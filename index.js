@@ -9,6 +9,8 @@ const res = require('express/lib/response')
 //initialize the app object
 const app = express()
 
+app.use('/places', require('./controllers/places'))
+
 //Create a homepage route
 app.get('/', function (req, res){
     // This gets sent to the client
