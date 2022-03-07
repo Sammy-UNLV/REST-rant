@@ -1,4 +1,8 @@
+
+require('dotenv').config()
+
 //Require needed modules
+require('dotenv').config()
 const express = require('express')
 const res = require('express/lib/response')
 
@@ -11,6 +15,13 @@ app.get('/', function (req, res){
     res.send('Hello world!')
 })
 
+//404 Route
+app.get('*', (req, res) => {
+    // This 404 gets sent to the client
+    req.status(404).send('<h1>404 Pages</h1>')
+
+})
+
 //Create a second route
 app.get('/second', function (req, res){
     // This gets sent to the client
@@ -18,9 +29,4 @@ app.get('/second', function (req, res){
 })
 
 //Listen for connections
-//app.listen(3000)
-
-//Aternative listen
-app.listen(3000, function() {
-    console.log('I am awake')
-})
+app.listen(process.env.PORT)
