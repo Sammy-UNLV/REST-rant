@@ -18,9 +18,9 @@ app.get('/', function (req, res){
 })
 
 //404 Route
-app.get('*', (req, res) => {
+app.get('*', function(req, res) {
     // This 404 gets sent to the client
-    req.status(404).send('<h1>404 Pages</h1>')
+    res.status(404).send('<h1>404 Pages</h1>')
 
 })
 
