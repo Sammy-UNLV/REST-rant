@@ -1,3 +1,14 @@
+# Project REST-Rant
+
+REST-Rant is an app where users can review restaurants.
+AS a softweare developer I need to sudy more so I can create better sites. 
+
+
+Colors:
+#638191......
+#DEDDB8
+#915C5E3
+
 
 |Method	|Path	|Purpose|
 |-------|-------|-------|
