@@ -21,14 +21,8 @@ app.get('/', function (req, res){
 //404 Route
 app.get('*', function(req, res) {
     // This 404 gets sent to the client
-    res.status(404).send('<h1>404 Pages</h1>')
+    res.render('error404')
 
-})
-
-//Create a second route
-app.get('/second', function (req, res){
-    // This gets sent to the client
-    res.send('Hello 2nd Universe!')
 })
 
 //Listen for connections
