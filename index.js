@@ -1,6 +1,4 @@
 
-require('dotenv').config()
-
 //Require needed modules
 require('dotenv').config()
 const express = require('express')
@@ -9,12 +7,15 @@ const res = require('express/lib/response')
 //initialize the app object
 const app = express()
 
+app.set('view engine', 'jsx')
+app.engine('jsx', require('express-react-views').createEngine())
+
 app.use('/places', require('./controllers/places'))
 
 //Create a homepage route
 app.get('/', function (req, res){
     // This gets sent to the client
-    res.send('Hello world!')
+    res.render('home')
 })
 
 //404 Route
