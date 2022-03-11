@@ -7,9 +7,13 @@ const res = require('express/lib/response')
 //initialize the app object
 const app = express()
 
+// Express Settings
+//app.set('views', _dirname + '/views')
 app.set('view engine', 'jsx')
 app.engine('jsx', require('express-react-views').createEngine())
+app.use(express.static('public'))
 
+// Controller & Routers
 app.use('/places', require('./controllers/places'))
 
 //Create a homepage route
