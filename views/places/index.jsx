@@ -6,9 +6,7 @@ function index (data) {
         return (
             <div className="col-sm-6">
                 <h2>
-                    <a href= {`/places/${index}`}>
-                    {place.name}
-                </a>
+                    <a href= {`/places/${index}`}>{place.name}</a>
                 </h2>
                 <p className="text-center">{place.cuisines}</p>
                     <img src={place.pic} alt={place.name} />
@@ -16,19 +14,17 @@ function index (data) {
                     Located in {place.city}, {place.state}
                 </p>
             </div>
-        )
-    })
+        );
+    });
     return (
         <Def>
             <main>
                 <h1>Place to Rant and Rave About</h1>
-                <div className="row">
-                    {placesFormatted}
-                </div>
+                <div className="row">{placesFormatted}</div>
             </main>
         </Def>
-    )
+    );
 
 }
 
-module.exports = index
+module.exports = index;
