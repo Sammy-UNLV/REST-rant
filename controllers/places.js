@@ -86,6 +86,7 @@ router.put('/:id', (req, res) => {
       res.redirect(`/places/${id}`)
   }
 })
+
 // DELETE
 router.delete('/:id', (req, res) => {
   let id = Number(req.params.id)
