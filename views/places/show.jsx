@@ -9,7 +9,10 @@ function show (data) {
             <p>Not Yet Rated</p>
             <a href={`/places/${data.id}/edit`} className='btn btn-warning'>
                 Edit
-            </a>     
+            </a>
+            <p>Founded: { data.place.founded }</p>
+            <p>{ data.place.city}</p>  
+            <p>{ data.place.state }</p>     
             <form method='POST' action={`/places/${data.id}?_method=DELETE`}>
                 <button type="submit" className="btn btn-danger">
                     Delete
