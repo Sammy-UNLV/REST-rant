@@ -1,16 +1,17 @@
 const router = require('express').Router()
 const db = require('../models')
 
+// Index
 router.get('/', (req, res) => {
-    db.Place.find()
-    .then((places) => {
-      res.render('places/index', { places })
-    })
-    .catch(err => {
-      res.render('error404')
-    })
+  db.Place.find()
+  .then((places) => {
+    res.render('places/index', { places })
+  })
+  .catch(err => {
+    res.render('error404')
+  })
 })
-
+ //Add New Place
 router.post('/', (req, res) => {
     db.Place.create(req.body)
   .then( () => {
@@ -36,16 +37,48 @@ router.get('/new', (req, res) => {
   res.render('places/new')
 })
 
+// Show
 router.get('/:id', (req, res) => {
   db.Place.findById(req.params.id)
-  .then( place  => {
-    res.render('places/show', { place })
+  .populate('comments')
+  .then(place => {
+      console.log(place.comments)
+      res.render('places/show', { place })
   })
   .catch(err => {
-    console.log(err) 
-    res.render('error404')
+      console.log('err', err)
+      res.render('error404')
   })
-})  
+})
+
+// Add New Comment
+router.post("/:id/comment", (req, res) => {
+  if (req.body.rant) {
+    req.body.rant = true;
+  } else {
+    req.body.rant = false;
+  }
+  db.Place.findById(req.params.id)
+    .then((place) => {
+      console.log(db.Comment);
+      db.Comment.create(req.body)
+        .then((comment) => {
+          place.comments.push(comment.id);
+          place.save().then(() => {
+            res.redirect(`/places/${req.params.id}`);
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+          res.render("error404");
+        });
+    })
+    .catch((err) => {
+      res.render("error404");
+    });
+});
+
+////
 router.put('/:id', (req, res) => {
   res.send('PUT /places/:id stub')
 })
